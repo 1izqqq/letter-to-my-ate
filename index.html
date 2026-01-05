@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>A Letter for You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #fde2e4, #e2ece9);
+      font-family: "Georgia", serif;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      cursor: pointer;
+    }
+
+    /* Envelope */
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #f6bdc4;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        transparent 50%,
+        #f3a8b2 50%
+      );
+      transform: rotate(45deg) scale(1.5);
+      transform-origin: center;
+    }
+
+    /* Flap */
+    .flap {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #f3a8b2;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      transform-origin: top;
+      transition: transform 0.8s ease;
+      z-index: 3;
+    }
+
+    /* Letter */
+    .letter {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      background: #fff;
+      border-radius: 4px;
+      padding: 18px;
+      box-sizing: border-box;
+      transform: translateY(100%);
+      transition: transform 1s ease 0.3s;
+      z-index: 2;
+      overflow-y: auto;
+    }
+
+    .letter p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .hint {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      opacity: 0.8;
+    }
+
+    /* Open state */
+    .open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .open .letter {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" onclick="openLetter()">
+    <div class="hint">Click to open 💌</div>
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="letter">
+        <p>
+          There will be moments when you feel alone, and moments when you feel
+          incredibly strong, and both belong just as much as the other. Be
+          gentle with yourself as you step into this new life—there’s no rush
+          to have everything figured out, and no shame in taking things one day
+          at a time. Some days will feel heavy, and others will quietly remind
+          you why you were brave enough to go, but through all of it, remember
+          that you are growing in ways you can’t always see yet. Let yourself
+          rest when you need to, ask for help when things feel overwhelming, and
+          celebrate even the smallest wins. No matter how far you travel or how
+          much you change, you are deeply loved, supported, and carried in the
+          hearts of the people who care about you—and that love goes with you
+          wherever you are.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.querySelector(".container").classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
